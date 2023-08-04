@@ -10,6 +10,7 @@ function FormView() {
   useEffect(() => {
     fetchForm();
     fetchSubmissions();
+    // eslint-disable-next-line
   }, []);
 
   const fetchForm = async () => {
