@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
-import '../styles/answerform.css'
+import '../styles/answerform.css';
+import { useAuth } from '../AuthContext'; // Update the path according to your AuthContext location
 
 function AnswerForm() {
   const { formId } = useParams();
+  const { isAuthenticated } = useAuth(); // Get isAuthenticated from AuthContext
   const [form, setForm] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
     const fetchForm = async () => {
@@ -119,6 +122,10 @@ const handleSubmit = async (event) => {
 
   if (!form) {
     return <div>Loading...</div>;
+  }
+
+  if (!isAuthenticated) {
+    navigate(`/fill-forms/${formId}`);
   }
 
   if (submitted) {
