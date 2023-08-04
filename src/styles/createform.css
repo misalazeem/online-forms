@@ -1,0 +1,71 @@
+.add-container {
+  padding: 5%;
+  border: 2px solid #000;
+  border-radius: 10px;
+  background-color: #D6DBDF;
+}
+
+.add-form-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* You can add this CSS in your stylesheets or a CSS file */
+.add-question,
+.submit-form,
+.delete-question {
+  background-color: #4caf50; /* Green */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.add-question:hover,
+.submit-form:hover,
+.delete-question:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.submit-form {
+  background-color: #f44336;
+}
+
+.submit-form:hover {
+  background-color: #d32f2f;
+}
+
+.delete-question {
+  background-color: #f44336;
+}
+
+.delete-question:hover {
+  background-color: #d32f2f;
+}
+
+.add-container label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.add-container input,
+.add-container textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}

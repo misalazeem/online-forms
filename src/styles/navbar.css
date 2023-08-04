@@ -1,0 +1,28 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navigation li {
+  font-size: 18px;
+  margin-left: 15px;
+}
+
+.desktop-links {
+  text-decoration: none;
+  color: #000;
+}
+
+.desktop-links:hover {
+  text-decoration: underline;
+}
+

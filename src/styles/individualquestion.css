@@ -1,0 +1,53 @@
+.add-question-container {
+  background-color: #34495E;
+  padding: 5%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.add-question-container label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.add-question-container input,
+.add-question-container select,
+.add-question-container textarea {
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+.add-question-container input[type="checkbox"],
+.add-question-container input[type="radio"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+.add-question-container input:focus,
+.add-question-container select:focus,
+.add-question-container textarea:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+
+.add-question-container textarea {
+  min-height: 120px;
+}
+
+.options ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}

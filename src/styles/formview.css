@@ -1,0 +1,33 @@
+.form-view-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-details {
+  margin-bottom: 20px;
+}
+
+.submissions-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.submissions-container h3 {
+  margin-bottom: 10px;
+}
+
+.submissions-container ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.submissions-container li {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.submissions-container h4 {
+  margin-bottom: 5px;
+}
