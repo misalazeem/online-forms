@@ -13,18 +13,18 @@ function AnswerForm() {
     const fetchForm = async () => {
       try {
         // Fetch the form details
-        const formResponse = await axios.get(`/forms/${formId}`);
+        const formResponse = await axios.get(`https://online-forms-backend.onrender.com/forms/${formId}`);
         const formData = formResponse.data;
 
         // Fetch the questions for the form
-        const questionsResponse = await axios.get(`/forms/${formId}/questions`);
+        const questionsResponse = await axios.get(`https://online-forms-backend.onrender.com/forms/${formId}/questions`);
         const questionsData = questionsResponse.data;
 
         // Fetch the options for radio and checkbox questions
         const optionFetchPromises = questionsData
           .filter((question) => ['radio', 'checkbox'].includes(question.type))
           .map(async (question) => {
-            const optionsResponse = await axios.get(`/questions/${question.id}/options`);
+            const optionsResponse = await axios.get(`https://online-forms-backend.onrender.com/questions/${question.id}/options`);
             question.options = optionsResponse.data;
           });
 
@@ -102,7 +102,7 @@ const handleSubmit = async (event) => {
     });
 
     // Submit the answers to the backend
-    await axios.post(`/forms/${formId}/submissions`, {
+    await axios.post(`https://online-forms-backend.onrender.com/forms/${formId}/submissions`, {
       email: email, // Use the email variable directly
       answers,
     });
