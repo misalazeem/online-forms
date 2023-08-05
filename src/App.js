@@ -1,17 +1,18 @@
-import './App.css';
-import React, {  useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import NavBar from './components/navbar';
-import CreateForm from './components/createform';
-import ViewForms from './components/ViewForms';
-import Signup from './components/signup';
-import Login from './components/login';
-import FormView from './components/FormView';
-import AnswerForm from './components/AnswerForm';
-import SendForms from './components/SendForms';
-import SendFormLink from './components/SendFormLink';
 import Home from './components/Home';
 import { useAuth } from './AuthContext';
+
+// Lazy load the components
+const CreateForm = React.lazy(() => import('./components/createform'));
+const ViewForms = React.lazy(() => import('./components/ViewForms'));
+const Signup = React.lazy(() => import('./components/signup'));
+const Login = React.lazy(() => import('./components/login'));
+const FormView = React.lazy(() => import('./components/FormView'));
+const AnswerForm = React.lazy(() => import('./components/AnswerForm'));
+const SendForms = React.lazy(() => import('./components/SendForms'));
+const SendFormLink = React.lazy(() => import('./components/SendFormLink'));
 
 function App() {
   const { isAuthenticated, setIsAuthenticated } = useAuth(); // Get isAuthenticated from AuthContext
@@ -33,7 +34,7 @@ function App() {
     <div className="App">
       <NavBar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
       <Routes>
-        <Route path='/' element = { <Home />} />
+        <Route path='/' element={<Home />} />
         <Route path="/fill-forms/:formId" element={<AnswerForm />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
@@ -48,7 +49,6 @@ function App() {
         ) : (
           <Route path="*" element={<Navigate to="/" />} />
         )}
-        
       </Routes>
     </div>
   );

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/answerform.css';
-import { useAuth } from '../AuthContext'; // Update the path according to your AuthContext location
+import { useAuth } from '../AuthContext';
 
 function AnswerForm() {
   const { formId } = useParams();
-  const { isAuthenticated } = useAuth(); // Get isAuthenticated from AuthContext
+  const { isAuthenticated } = useAuth();
   const [form, setForm] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [submitted, setSubmitted] = useState(false);
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchForm = async () => {
@@ -46,78 +46,78 @@ function AnswerForm() {
     fetchForm();
   }, [formId]);
 
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  try {
-    // Collect form data from the event.target and process it
-    const formElement = document.getElementById('answerForm');
-    const formData = new FormData(formElement);
-    const answers = [];
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      // Collect form data from the event.target and process it
+      const formElement = document.getElementById('answerForm');
+      const formData = new FormData(formElement);
+      const answers = [];
 
-    // Get the email value from the form data
-    const email = formData.get('email');
+      // Get the email value from the form data
+      const email = formData.get('email');
 
-    formData.forEach((value, key) => {
-      if (key === 'email') {
-        // Skip the email field
-        return;
-      }
+      formData.forEach((value, key) => {
+        if (key === 'email') {
+          // Skip the email field
+          return;
+        }
 
-      const questionId = key.replace('question_', '');
-      const question = questions.find((q) => q.id === Number(questionId)); // Use questions state directly
+        const questionId = key.replace('question_', '');
+        const question = questions.find((q) => q.id === Number(questionId));
 
-      if (!question) {
-        // Handle scenario when the question is not found
-        console.error(`Question with id ${questionId} not found.`);
-        return;
-      }
+        if (!question) {
+          // Handle scenario when the question is not found
+          console.error(`Question with id ${questionId} not found.`);
+          return;
+        }
 
-      // Determine the type of the question (text, textarea, radio, checkbox)
-      let type;
-      if (question.type === 'text' || question.type === 'textarea') {
-        type = question.type;
-      } else if (question.type === 'radio') {
-        type = 'radio';
-      } else if (question.type === 'checkbox') {
-        type = 'checkbox';
-      }
+        // Determine the type of the question (text, textarea, radio, checkbox)
+        let type;
+        if (question.type === 'text' || question.type === 'textarea') {
+          type = question.type;
+        } else if (question.type === 'radio') {
+          type = 'radio';
+        } else if (question.type === 'checkbox') {
+          type = 'checkbox';
+        }
 
-      // Handle answers for radio and checkbox questions
-      let answer;
-      if (type === 'radio') {
-        // For radio questions, get the value of the selected option
-        const optionId = formData.get(`question_${questionId}`);
-        const option = question.options.find((opt) => opt.id === Number(optionId));
-        answer = option ? option.value : '';
-      } else if (type === 'checkbox') {
-        // For checkbox questions, get an array of selected option values
-        const selectedOptionIds = formData.getAll(`question_${questionId}`);
-        const selectedOptions = question.options.filter((opt) =>
-          selectedOptionIds.includes(opt.id.toString())
-        );
-        answer = selectedOptions.map((opt) => opt.value);
-      } else {
-        // For text and textarea questions, use the value directly
-        answer = value;
-      }
+        // Handle answers for radio and checkbox questions
+        let answer;
+        if (type === 'radio') {
+          // For radio questions, get the value of the selected option
+          const optionId = formData.get(`question_${questionId}`);
+          const option = question.options.find((opt) => opt.id === Number(optionId));
+          answer = option ? option.value : '';
+        } else if (type === 'checkbox') {
+          // For checkbox questions, get an array of selected option values
+          const selectedOptionIds = formData.getAll(`question_${questionId}`);
+          const selectedOptions = question.options.filter((opt) =>
+            selectedOptionIds.includes(opt.id.toString())
+          );
+          answer = selectedOptions.map((opt) => opt.value);
+        } else {
+          // For text and textarea questions, use the value directly
+          answer = value;
+        }
 
-      answers.push({ question_id: Number(questionId), answer, type });
-    });
+        answers.push({ question_id: Number(questionId), answer, type });
+      });
 
-    // Submit the answers to the backend
-    await axios.post(`https://online-forms-backend.onrender.com/forms/${formId}/submissions`, {
-      email: email, // Use the email variable directly
-      answers,
-    });
+      // Submit the answers to the backend
+      await axios.post(`https://online-forms-backend.onrender.com/forms/${formId}/submissions`, {
+        email: email,
+        answers,
+      });
 
-    // Handle successful submission, e.g., show a success message or redirect
-    console.log('Form submitted successfully');
-    setSubmitted(true);
+      // Handle successful submission, e.g., show a success message or redirect
+      console.log('Form submitted successfully');
+      setSubmitted(true);
 
-  } catch (error) {
-    console.error('Error submitting form:', error);
-  }
-};
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+  };
 
 
   if (!form) {
