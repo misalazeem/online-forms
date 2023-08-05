@@ -32,6 +32,7 @@ function App() {
     <div className="App">
       <NavBar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
       <Routes>
+        <Route path="/fill-forms/:formId" element={<AnswerForm />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         {isAuthenticated ? (
@@ -45,7 +46,7 @@ function App() {
         ) : (
           <Route path="*" element={<Navigate to="/login" />} />
         )}
-        <Route path="/fill-forms/:formId" element={<AnswerForm />} />
+        
       </Routes>
     </div>
   );
