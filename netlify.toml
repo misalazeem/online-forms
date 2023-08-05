@@ -1,6 +1,6 @@
 [[redirects]]
 from = "/fill-forms/:formId/*"
-to = "/fill-forms/:formId"
+to = "/index.html"
 status = 200
 
 [[redirects]]
