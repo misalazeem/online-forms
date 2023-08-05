@@ -4,15 +4,6 @@ import NavBar from './components/navbar';
 import Home from './components/Home';
 import { useAuth } from './AuthContext';
 
-// Lazy load the components
-const CreateForm = React.lazy(() => import('./components/createform'));
-const ViewForms = React.lazy(() => import('./components/ViewForms'));
-const Signup = React.lazy(() => import('./components/signup'));
-const Login = React.lazy(() => import('./components/login'));
-const FormView = React.lazy(() => import('./components/FormView'));
-const AnswerForm = React.lazy(() => import('./components/AnswerForm'));
-const SendForms = React.lazy(() => import('./components/SendForms'));
-const SendFormLink = React.lazy(() => import('./components/SendFormLink'));
 
 function App() {
   const { isAuthenticated, setIsAuthenticated } = useAuth(); // Get isAuthenticated from AuthContext
