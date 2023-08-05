@@ -1,9 +1,15 @@
 [[redirects]]
-  from = "/fill-forms/*"
-  to = "/fill-forms/*"
+  from = "/*"
+  to = "https://master--comfy-unicorn-4fe3ed.netlify.app/:splat"
+  status = 301
+
+[[redirects]]
+  from = "^index\\.html$"
+  to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/*"
+  from = "^(.*)$"
   to = "/index.html"
   status = 200
+  force = true
