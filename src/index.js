@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
+import './App.css'
 import NavBar from './components/navbar';
 import Home from './components/Home';
 import { AuthProvider, useAuth } from './AuthContext';
@@ -19,6 +20,7 @@ function AppWrapper() {
 
   return (
     <>
+    <div className="App">
       <NavBar isAuthenticated={isAuthenticated} />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -38,6 +40,7 @@ function AppWrapper() {
           <Route path="*" element={<Navigate to="/" />} />
         )}
       </Routes>
+      </div>
     </>
   );
 }
