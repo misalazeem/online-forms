@@ -1,10 +1,4 @@
 [[redirects]]
-  from = "/*"
-  to = "https://master--comfy-unicorn-4fe3ed.netlify.app/:splat"
-  status = 301
-
-[[redirects]]
-  from = "^(.*)$"
-  to = "/index.html"
-  status = 200
-  force = true
+from= "/*"
+to="/index.html*
+status = 200
