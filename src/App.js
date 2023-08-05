@@ -10,6 +10,7 @@ import FormView from './components/FormView';
 import AnswerForm from './components/AnswerForm';
 import SendForms from './components/SendForms';
 import SendFormLink from './components/SendFormLink';
+import Home from './components/Home';
 import { useAuth } from './AuthContext';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
     <div className="App">
       <NavBar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
       <Routes>
+        <Route path='/' element = { <Home />} />
         <Route path="/fill-forms/:formId" element={<AnswerForm />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
@@ -44,7 +46,7 @@ function App() {
             <Route path="/send-form/:formId" element={<SendFormLink />} />
           </>
         ) : (
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="*" element={<Navigate to="/" />} />
         )}
         
       </Routes>
