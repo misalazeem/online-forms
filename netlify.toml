@@ -1,9 +1,0 @@
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 301
-
-[[redirects]]
-  from = "/fill-forms/*"
-  to = "/fill-forms"
-  status = 301
