@@ -44,12 +44,7 @@ function AnswerForm() {
       }
     };
     fetchForm();
-
-    if (!isAuthenticated) {
-      // If user is not authenticated, redirect to the fill-forms route
-      navigate(`/fill-forms/${formId}`);
-    }
-  }, [formId, isAuthenticated, navigate]);
+  }, [formId]);
 
 const handleSubmit = async (event) => {
   event.preventDefault();
