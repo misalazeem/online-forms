@@ -22,15 +22,12 @@ const Signup = () => {
     e.preventDefault();
     console.log('Signup form submitted:', formData);
   
-    // Make the HTTP POST request to the backend
     axios.post('https://online-forms-backend.onrender.comsignup', formData)
       .then((response) => {
         console.log('Signup successful!', response.data);
-        // Redirect or show a success message to the user after successful signup
       })
       .catch((error) => {
         console.error('Signup error:', error.response.data);
-        // Show an error message to the user if signup fails
       });
   };
 

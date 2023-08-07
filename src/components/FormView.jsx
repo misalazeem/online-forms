@@ -41,7 +41,6 @@ function FormView() {
         <h2>Form View</h2>
         <h3>Title: {form.title}</h3>
         <p>Description: {form.description}</p>
-        {/* Render other details of the form here */}
       </div>
 
       <div className="submissions-container">

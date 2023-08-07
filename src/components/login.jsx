@@ -26,17 +26,15 @@ const Login = () => {
     e.preventDefault();
     console.log('Login form submitted:', formData);
 
-    // Make the HTTP POST request to the backend for login
     axios.post('https://online-forms-backend.onrender.com/login', formData)
       .then((response) => {
         console.log('Login successful!', response.data);
         setIsAuthenticated(true);
-        setUserId(response.data.user_id); // Store the user_id in the front-end state
+        setUserId(response.data.user_id);
         navigate('/create-form');
       })
       .catch((error) => {
         console.error('Login error:', error.response.data);
-        // Show an error message to the user if login fails
         setError('Invalid email or password');
       });
   };
@@ -44,7 +42,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <h2>Login</h2>
-      {error && <p className="error-message">{error}</p>} {/* Display error message if error is not empty */}
+      {error && <p className="error-message">{error}</p>}
       <form className="login-form" onSubmit={handleSubmit}>
         <input
           type="email"

@@ -14,9 +14,6 @@ function App() {
   }, [isAuthenticated]);
 
   const handleLogout = () => {
-    // Perform logout logic here (clear token, etc.)
-    // For now, we will simply set isAuthenticated to false
-    // and navigate the user to the login page
     setIsAuthenticated(false);
     navigate('/login');
   };

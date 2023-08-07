@@ -12,11 +12,10 @@
   align-items: center;
 }
 
-/* You can add this CSS in your stylesheets or a CSS file */
 .add-question,
 .submit-form,
 .delete-question {
-  background-color: #4caf50; /* Green */
+  background-color: #4caf50;
   color: white;
   border: none;
   padding: 10px 20px;

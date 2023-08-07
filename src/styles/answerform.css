@@ -24,7 +24,7 @@
 
 .answer-form label {
   display: flex;
-  align-items: center; /* Align label and input on the same line */
+  align-items: center;
   font-weight: bold;
   margin-bottom: 5px;
 }
@@ -39,7 +39,6 @@
   transition: border-color 0.3s;
 }
 
-/* For radio and checkbox, use flexbox to align input and label on the same line */
 .answer-form input[type="radio"],
 .answer-form input[type="checkbox"] {
   display: inline-block;

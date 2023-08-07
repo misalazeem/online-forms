@@ -77,7 +77,7 @@ const IndividualQuestion = ({ index, question, handleQuestionChange, handleQuest
                   type="text"
                   value={option}
                   onChange={(e) => handleOptionChange(optionIndex, e.target.value)}
-                  key={optionIndex} // Add key attribute here
+                  key={optionIndex}
                 />
                 <button className="delete-question" onClick={() => handleDeleteOption(optionIndex)}>
                   Delete Option
