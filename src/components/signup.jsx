@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/signup.css';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Signup = () => {
@@ -9,6 +10,8 @@ const Signup = () => {
     password: '',
     confirmPassword: '',
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,6 +28,7 @@ const Signup = () => {
     axios.post('https://online-forms-backend.onrender.com/signup', formData)
       .then((response) => {
         console.log('Signup successful!', response.data);
+        navigate('/login');  
       })
       .catch((error) => {
         console.error('Signup error:', error.response.data);

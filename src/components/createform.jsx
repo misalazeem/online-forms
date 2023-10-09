@@ -9,6 +9,7 @@ function CreateForm() {
   const [formTitle, setFormTitle] = useState('');
   const [formDescription, setFormDescription] = useState('');
   const [questions, setQuestions] = useState([]);
+  const [formCreated, setFormCreated] = useState(false);
 
   const addQuestion = () => {
     setQuestions([...questions, { type: 'text', label: '', name: '', options: [], content: '', required: false }]);
@@ -87,6 +88,7 @@ const handleQuestionTypeChange = (index, newType) => {
         setFormTitle('');
         setFormDescription('');
         setQuestions([]);
+        setFormCreated(true);
       })
       .catch((error) => {
         console.error('Form submission error:', error.response.data);
@@ -96,6 +98,10 @@ const handleQuestionTypeChange = (index, newType) => {
   return (
     <div>
       <h2>Add Form</h2>
+
+      {formCreated ? (
+  <div>Form created successfully!</div>
+) : (
       <div className="add-container">
         <div className="form-title">
           <label>
@@ -132,6 +138,7 @@ const handleQuestionTypeChange = (index, newType) => {
           <button className="submit-form" onClick={handleSubmitForm}>Submit Form</button>
         </div>
       </div>
+      )}
     </div>
   );
 }
