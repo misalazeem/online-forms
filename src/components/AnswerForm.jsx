@@ -12,15 +12,12 @@ function AnswerForm() {
   useEffect(() => {
     const fetchForm = async () => {
       try {
-        // Fetch the form details
         const formResponse = await axios.get(`https://online-forms-backend.onrender.com/forms/${formId}`);
         const formData = formResponse.data;
 
-        // Fetch the questions for the form
         const questionsResponse = await axios.get(`https://online-forms-backend.onrender.com/forms/${formId}/questions`);
         const questionsData = questionsResponse.data;
 
-        // Fetch the options for radio and checkbox questions
         const optionFetchPromises = questionsData
           .filter((question) => ['radio', 'checkbox'].includes(question.type))
           .map(async (question) => {
@@ -30,10 +27,8 @@ function AnswerForm() {
 
         await Promise.all(optionFetchPromises);
 
-        // Set the state for questions
         setQuestions(questionsData);
 
-        // Combine form details and questions
         formData.questions = questionsData;
         setForm(formData);
       } catch (error) {
@@ -45,17 +40,14 @@ function AnswerForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Collect form data from the event.target and process it
       const formElement = document.getElementById('answerForm');
       const formData = new FormData(formElement);
       const answers = [];
 
-      // Get the email value from the form data
       const email = formData.get('email');
 
       formData.forEach((value, key) => {
         if (key === 'email') {
-          // Skip the email field
           return;
         }
 
@@ -63,12 +55,10 @@ function AnswerForm() {
         const question = questions.find((q) => q.id === Number(questionId));
 
         if (!question) {
-          // Handle scenario when the question is not found
           console.error(`Question with id ${questionId} not found.`);
           return;
         }
 
-        // Determine the type of the question (text, textarea, radio, checkbox)
         let type;
         if (question.type === 'text' || question.type === 'textarea') {
           type = question.type;
@@ -77,36 +67,29 @@ function AnswerForm() {
         } else if (question.type === 'checkbox') {
           type = 'checkbox';
         }
-
-        // Handle answers for radio and checkbox questions
         let answer;
         if (type === 'radio') {
-          // For radio questions, get the value of the selected option
           const optionId = formData.get(`question_${questionId}`);
           const option = question.options.find((opt) => opt.id === Number(optionId));
           answer = option ? option.value : '';
         } else if (type === 'checkbox') {
-          // For checkbox questions, get an array of selected option values
           const selectedOptionIds = formData.getAll(`question_${questionId}`);
           const selectedOptions = question.options.filter((opt) =>
             selectedOptionIds.includes(opt.id.toString())
           );
           answer = selectedOptions.map((opt) => opt.value);
         } else {
-          // For text and textarea questions, use the value directly
           answer = value;
         }
 
         answers.push({ question_id: Number(questionId), answer, type });
       });
 
-      // Submit the answers to the backend
       await axios.post(`https://online-forms-backend.onrender.com/forms/${formId}/submissions`, {
         email: email,
         answers,
       });
 
-      // Handle successful submission, e.g., show a success message or redirect
       console.log('Form submitted successfully');
       setSubmitted(true);
 

@@ -7,7 +7,6 @@ CREATE TABLE form_creators
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
 CREATE TABLE forms
 (
     id SERIAL PRIMARY KEY,
@@ -35,7 +34,6 @@ CREATE TABLE options
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
 CREATE TABLE submissions
 (
     id SERIAL PRIMARY KEY,
@@ -44,8 +42,6 @@ CREATE TABLE submissions
     submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(email)
 );
-
-
 
 CREATE TABLE responses
 (

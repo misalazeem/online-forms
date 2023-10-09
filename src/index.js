@@ -24,7 +24,6 @@ function AppWrapper() {
       <NavBar isAuthenticated={isAuthenticated} />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* Define the AnswerForm route directly here */}
         <Route path="/fill-forms/:formId" element={<AnswerForm />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />

@@ -6,7 +6,7 @@ import { useAuth } from './AuthContext';
 
 
 function App() {
-  const { isAuthenticated, setIsAuthenticated } = useAuth(); // Get isAuthenticated from AuthContext
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {

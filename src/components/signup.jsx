@@ -22,7 +22,7 @@ const Signup = () => {
     e.preventDefault();
     console.log('Signup form submitted:', formData);
   
-    axios.post('https://online-forms-backend.onrender.comsignup', formData)
+    axios.post('https://online-forms-backend.onrender.com/signup', formData)
       .then((response) => {
         console.log('Signup successful!', response.data);
       })
